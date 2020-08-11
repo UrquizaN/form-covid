@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forumulário</title>
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/scripts/form.js" defer></script>
+</head>
+<body id="page-body">
+
+    <header class="page-header">
+        <img src="/assets/logo.png" alt="">
+    </header>
+
+    <div id="container">
+        <div class="page-container ">
+            <h1>Formulário de autodeclaração</h1>
+            <main>
+                <form action="/submit" id="form-page" method="POST">
+                    <div class="input-block">
+                        <label for="cpf">Digite seu CPF:</label>
+                        <!-- <input type="text" id="cpf" maxlength="11" /> -->
+                        <input id="cpf" name="cpf" oninput="mask(this)" type="text" placeholder="Ex: 000.000.000-00">
+                    </div>
+
+                    <div class="select-block">
+                        <label for="user">Tipo de usuário: </label>
+                        <select name="userType" id="userType" disabled>
+                            <option value="">Selecione uma opção</option>
+                            <option value="">Matrícula</option> 
+                            <option value="">Conselho</option>
+                        </select>
+                    </div>
+                    <div class="input-block">
+                        <label for="matricula">Digite sua matrícula/conselho:</label>
+                        <input name="matricula" type="text" disabled>
+                    </div>
+                    <div class="checkbox-block">
+                        <label for="checkbox">Você teve algum dos sintomas abaixo nos últimos 14 dias?</label>
+                        <div class="options">
+                            {% for symptom in symptoms %}
+                                <input type="checkbox" name="{{ symptoms }}" class="symptoms" disabled>
+                                <label for="{{ symptoms }}">{{ symptom }}</label><br>
+                            {% endfor %}
+                            <input type="checkbox" name="no-symptoms" disabled>
+                            <label for="no-symptoms">Nenhum sintoma</label><br>
+                        </div>
+                        
+                    </div>
+                    <div class="confirm-declaration">
+                        <input type="checkbox" name="declaration" id="" disabled>Declaro que as informações fornecidas são verdadeiras
+                    </div> 
+                    
+                    <button class="button" type="submit" form="form-page">Enviar</button>
+                </form>
+            </main>
+            
+        </div>
+    </div> 
+</body>
+</html>

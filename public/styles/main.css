@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&display=swap');
+:root {
+    --color-background: #F0F0F7;
+    --color-primary-lighter: #5494462f;
+    --color-primary: #447838;
+    --color-primary-dark: #37632e;
+    --color-text-complement: #9C98A6;
+    --color-text-complement-lighter: #bfbcc5;
+    --color-text-base: #6c6a72;
+    --color-line-in-white: #E6E6F0;
+    --color-input-background: #F8F8FC;
+    --color-button-text: #FFFFFF;
+    /* tamanho da fonte padrão: 16px - 100% - 1rem */
+    font-size: 60%; /* controle das medidas rem */
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100vh;
+}
+
+body {
+    background-color: var(--color-background);
+}
+
+body,
+input,
+button,
+select {
+    font:  500 1.6rem Poppins;
+    color: var(--color-text-base);
+}
+
+#container {
+    margin: 4rem 0;
+}
+
+.page-container {
+    width: 90vw;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#page-body .page-header {
+    width: 100%;
+    background-color: var(--color-primary-lighter);
+    text-align: center;
+}
+
+#page-body .page-header img {
+    padding: 2rem;
+}
+
+input::placeholder {
+    color: var(--color-text-complement-lighter);
+}
+
+.select-block label,
+.input-block label,
+.checkbox-block > label{
+    font-size: 1.4rem;
+    color: var(--color-text-complement);
+    display: block;
+    margin-top: 3rem;
+}
+
+.input-block input,
+.select-block select {
+    width: 100%;
+    height: 5rem;
+    margin-top: 0.8rem;
+    border-radius: 0.8rem;
+    background: var(--color-input-background);
+    border: 1px solid var(--color-line-in-white);
+    outline: 0;
+    padding: 0 1.6rem;
+    font: 1.6rem Archivo;
+}
+
+.checkbox-block .options input,
+.confirm-declaration input{
+    margin-right: 0.6rem;
+}
+
+.confirm-declaration {
+    margin-top: 4rem;
+    font-weight: 700;
+}
+
+.button {
+    width: 100%;
+    height: 5rem;
+    margin-top: 2rem;
+    border-radius: 0.6rem;
+    border: 0;
+    background: var(--color-primary);
+    color: var(--color-button-text);
+    font: 700 Archivo;
+    cursor: pointer;
+    transition: background .4s;
+}
+
+.button:hover {
+    background: var(--color-primary-dark);
+}
+
+.confirmation {
+    border: 5px solid var(--color-line-in-white);
+    border-radius: 1rem;
+    padding: 4rem;
+    text-align: center;
+}
+
+.confirmation img {
+    width: 80px;
+    margin: 4rem auto;
+}
+
+@media(min-width: 750px) {
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 2rem;
+        grid-template-areas: 
+        "cpf select matricula"
+        "checkbox checkbox checkbox"
+        "declaration declaration declaration"
+        "button button button";
+    }
+
+    .checkbox-block {
+        grid-area: checkbox; 
+    }
+
+    .confirm-declaration {
+        grid-area: declaration;
+        justify-self: center;
+    }
+
+    .button {
+        grid-area: button;
+        width: 250px;
+        justify-self: center;
+    }
+
+    .confirmation {
+        max-width: 500px;
+    }
+}
