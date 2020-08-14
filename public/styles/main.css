@@ -58,6 +58,26 @@ select {
     text-align: center;
 }
 
+#page-body .page-header .top-bar {
+    width: 90%;
+    display: flex;
+    margin: 0 auto;
+}
+
+#page-body .page-header a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+}
+
+#page-body .page-header a img{
+    padding: 0;
+    position: absolute;
+    top: 1rem;
+}
+
 #page-body .page-header img {
     padding: 2rem;
 }
@@ -68,7 +88,7 @@ input::placeholder {
 
 .select-block label,
 .input-block label,
-.checkbox-block > label{
+.symptoms-block > label{
     font-size: 1.4rem;
     color: var(--color-text-complement);
     display: block;
@@ -88,9 +108,13 @@ input::placeholder {
     font: 1.6rem Archivo;
 }
 
-.checkbox-block .options input,
+.symptoms-block .symptoms-list input,
 .confirm-declaration input{
     margin-right: 0.6rem;
+}
+
+.symptoms-block li {
+    list-style: none;
 }
 
 .confirm-declaration {
@@ -139,7 +163,13 @@ input::placeholder {
         "button button button";
     }
 
-    .checkbox-block {
+    #page-body .page-header .top-bar {
+        width: 90%;
+        display: flex;
+        margin: 0 auto;
+    }
+
+    .symptoms-block {
         grid-area: checkbox; 
     }
 

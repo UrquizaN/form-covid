@@ -18,39 +18,49 @@
         <div class="page-container ">
             <h1>Formulário de autodeclaração</h1>
             <main>
-                <form action="/submit" id="form-page" method="POST">
+                <form action="/passport" id="form-page" method="POST">
                     <div class="input-block">
                         <label for="cpf">Digite seu CPF:</label>
                         <!-- <input type="text" id="cpf" maxlength="11" /> -->
-                        <input id="cpf" name="cpf" oninput="mask(this)" type="text" placeholder="Ex: 000.000.000-00">
+                        <input 
+                            id="cpf" 
+                            name="cpf" 
+                            oninput="mask(this)" 
+                            type="text" 
+                            placeholder="Ex: 000.000.000-00"
+                            required
+                        >
                     </div>
 
                     <div class="select-block">
                         <label for="user">Tipo de usuário: </label>
-                        <select name="userType" id="userType" disabled>
+                        <select name="userType" id="userType" disabled required>
                             <option value="">Selecione uma opção</option>
-                            <option value="">Matrícula</option> 
-                            <option value="">Conselho</option>
+                            <option value="0">Matrícula</option> 
+                            <option value="1">Conselho</option>
                         </select>
                     </div>
                     <div class="input-block">
                         <label for="matricula">Digite sua matrícula/conselho:</label>
-                        <input name="matricula" type="text" disabled>
+                        <input name="matricula" type="text" disabled required>
                     </div>
-                    <div class="checkbox-block">
+                    <div class="symptoms-block">
                         <label for="checkbox">Você teve algum dos sintomas abaixo nos últimos 14 dias?</label>
-                        <div class="options">
-                            {% for symptom in symptoms %}
-                                <input type="checkbox" name="{{ symptoms }}" class="symptoms" disabled>
-                                <label for="{{ symptoms }}">{{ symptom }}</label><br>
-                            {% endfor %}
-                            <input type="checkbox" name="no-symptoms" disabled>
-                            <label for="no-symptoms">Nenhum sintoma</label><br>
-                        </div>
+                            <ul class="symptoms-list">
+                                {% for symptom in symptoms %}
+                                    <li>
+                                        <input type="checkbox" name="{{ symptom }}" class="symptoms" data-id="{{ symptom }}" disabled>
+                                        <label for="{{ symptoms }}">{{ symptom }}</label><br>
+                                    </li>
+                                {% endfor %}
+                                <input type="checkbox" name="no-symptoms" disabled>
+                                <label for="no-symptoms">Nenhum sintoma</label><br>
+                            </ul>
                         
+                        <input type="hidden" name="symptoms">
                     </div>
                     <div class="confirm-declaration">
-                        <input type="checkbox" name="declaration" id="" disabled>Declaro que as informações fornecidas são verdadeiras
+                        <input type="checkbox" name="declaration" id="" disabled required>Declaro que as informações fornecidas são verdadeiras
                     </div> 
                     
                     <button class="button" type="submit" form="form-page">Enviar</button>
