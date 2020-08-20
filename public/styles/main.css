@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&display=swap');
 :root {
     --color-background: #F0F0F7;
-    --color-primary-lighter: #5494462f;
-    --color-primary: #447838;
-    --color-primary-dark: #37632e;
+    --color-primary-lighter: #ee1c008e;
+    --color-primary: #ee1c00d0;
+    --color-primary-dark: #d61900d0;
     --color-text-complement: #9C98A6;
     --color-text-complement-lighter: #bfbcc5;
     --color-text-base: #6c6a72;
@@ -55,7 +55,8 @@ select {
 #page-body .page-header {
     width: 100%;
     background-color: var(--color-primary-lighter);
-    text-align: center;
+    position: relative;
+    height: 20rem;
 }
 
 #page-body .page-header .top-bar {
@@ -69,17 +70,22 @@ select {
     display: flex;
     align-items: center;
     margin-top: 20px;
-    position: relative;
 }
 
 #page-body .page-header a img{
     padding: 0;
-    position: absolute;
     top: 1rem;
 }
 
 #page-body .page-header img {
     padding: 2rem;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
 }
 
 input::placeholder {

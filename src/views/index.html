@@ -11,7 +11,7 @@
 <body id="page-body">
 
     <header class="page-header">
-        <img src="/assets/logo.png" alt="">
+        <img src="/assets/logo.svg" alt="">
     </header>
 
     <div id="container">
@@ -49,8 +49,8 @@
                             <ul class="symptoms-list">
                                 {% for symptom in symptoms %}
                                     <li>
-                                        <input type="checkbox" name="{{ symptom }}" class="symptoms" data-id="{{ symptom }}" disabled>
-                                        <label for="{{ symptoms }}">{{ symptom }}</label><br>
+                                        <input type="checkbox" name="{{ symptom }}" class="symptoms" data-id="{{ symptom.id }}" disabled>
+                                        <label for="{{ symptoms }}">{{ symptom.name }}</label><br>
                                     </li>
                                 {% endfor %}
                                 <input type="checkbox" name="no-symptoms" disabled>
