@@ -1,12 +1,13 @@
 const express = require('express')
 const routes = express.Router()
 const IndexController = require('./controllers/IndexController')
-const CpfController = require('./controllers/CpfController')
+const ValidationController = require('./controllers/ValidationController')
 // const { symptoms } = require('../public/data')
 
 routes
 .get('/', IndexController.index)
-.get('/:cpf', CpfController.index)
+.get('/cpf/:cpf', ValidationController.cpf)
+.get('/identification/:identification', ValidationController.identification)
 // .post('/passport', function(request, response){
 //     const data = request.body
 //     console.log(data)

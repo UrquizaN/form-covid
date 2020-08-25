@@ -33,8 +33,33 @@ async function mask(cpf){
     } else {
         await verifyCPF(cpfValue)
     }
- 
+}
+
+selectUser.addEventListener('change', () => {
+    if ( selectUser.value == 0)  matriculaInput.setAttribute("maxlength", "5")
+    else matriculaInput.setAttribute("maxlength", "6")
+})
+
+async function identification(id){
+    let idValue = id.value
     
+    if(isNaN(idValue[idValue.length-1])){ // impede entrar outro caractere que não seja número
+        id.value = idValue.substring(0, idValue.length-1)
+        return
+    }
+
+    const idLength = matriculaInput.getAttribute("maxlength")
+
+    if (idValue.length < idLength) {
+        noSymptomsCheck.disabled = true
+        declarationCheck.disabled = true
+
+        for(let symptom of symptomsList){
+            symptom.disabled = true
+        }
+    } else {
+        await verifyIdentification(idValue)
+    }
 }
 
 let symptoms = []
@@ -79,27 +104,29 @@ noSymptomsCheck.addEventListener('click', function(){
 })
 
  async function verifyCPF(cpfValue) {
-    const checked = await fetch(`http://localhost:5000/${cpfValue}`)
+    const checked = await fetch(`http://localhost:5000/cpf/${cpfValue}`)
 
     if(checked.status !== 200) {
-        alert('CPF inválidooooo')
+        alert('CPF inválido')
         return
-    }
-    
-    for(let symptom of symptomsList){
-        symptom.disabled = false
     }
     selectUser.disabled = false
     matriculaInput.disabled = false
+}
+
+async function verifyIdentification(idValue) {
+    const checked = await fetch(`http://localhost:5000/identification/${idValue}`)
+
+    if(checked.status !== 200) {
+        alert('Informação inválida')
+        return
+    }
+    for(let symptom of symptomsList){
+        symptom.disabled = false
+    }
+
     noSymptomsCheck.disabled = false
     declarationCheck.disabled = false
-
-    
-
-    // const cpf = event.target.value
-
-    // const checked = cpfs.find( (value) => value == cpf)
-    
 }
 
 

@@ -42,7 +42,13 @@
                     </div>
                     <div class="input-block">
                         <label for="matricula">Digite sua matrícula/conselho:</label>
-                        <input name="matricula" type="text" disabled required>
+                        <input 
+                            name="matricula" 
+                            type="text" 
+                            oninput="identification(this)" 
+                            disabled 
+                            required
+                        >
                     </div>
                     <div class="symptoms-block">
                         <label for="checkbox">Você teve algum dos sintomas abaixo nos últimos 14 dias?</label>
