@@ -20,15 +20,15 @@ module.exports = {
 
     async identification(req, res, next) {
         try {
-            const { identification } = req.params
-
-            const results = await knex('users').where({ identification })
+            const { cpf, identification } = req.params
+            console.log('cpf: ' + cpf + 'id: ' + identification)
+            const results = await knex('users').where({ cpf, identification })
             console.log(results)
             if(results.length == 0) {
                 return res.send(404)
             }
 
-            return res.send(results)
+            return res.send(results) 
             
         } catch (error) {
             next(error)

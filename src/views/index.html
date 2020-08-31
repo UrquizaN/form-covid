@@ -59,17 +59,18 @@
                                         <label for="{{ symptoms }}">{{ symptom.name }}</label><br>
                                     </li>
                                 {% endfor %}
-                                <input type="checkbox" name="no-symptoms" disabled>
+                                <input type="checkbox" name="no-symptoms" value="true" disabled>
                                 <label for="no-symptoms">Nenhum sintoma</label><br>
-                            </ul>
-                        
+                            </ul> 
                         <input type="hidden" name="symptoms">
+                        <input type="hidden" name="noSymptoms">
+
                     </div>
                     <div class="confirm-declaration">
-                        <input type="checkbox" name="declaration" id="" disabled required>Declaro que as informações fornecidas são verdadeiras
+                        <input type="checkbox" name="declaration" disabled required>Declaro que as informações fornecidas são verdadeiras
                     </div> 
                     
-                    <button class="button" type="submit" form="form-page">Enviar</button>
+                    <button class="button disabled" type="submit" form="form-page" >Enviar</button>
                 </form>
             </main>
             

@@ -2,9 +2,12 @@ const selectUser = document.querySelector('select[name=userType]')
 const matriculaInput = document.querySelector('input[name=matricula]')
 const symptomsList = document.getElementsByClassName('symptoms')
 const noSymptomsCheck = document.querySelector('input[name=no-symptoms]')
+const noSymptomsInput = document.querySelector('input[name=noSymptoms]')
 const declarationCheck = document.querySelector('input[name=declaration]')
 const symptomsInput = document.querySelector('input[name=symptoms]')
 const cpfInput = document.getElementById('cpf')
+const submitButton = document.querySelector('button')
+
 // var cpf = document.querySelector("#cpf");
 
 // cpf.addEventListener("blur", function(){
@@ -42,13 +45,13 @@ selectUser.addEventListener('change', () => {
 
 async function identification(id){
     let idValue = id.value
-    
     if(isNaN(idValue[idValue.length-1])){ // impede entrar outro caractere que não seja número
         id.value = idValue.substring(0, idValue.length-1)
         return
     }
 
     const idLength = matriculaInput.getAttribute("maxlength")
+    console.log(idValue)
 
     if (idValue.length < idLength) {
         noSymptomsCheck.disabled = true
@@ -58,7 +61,9 @@ async function identification(id){
             symptom.disabled = true
         }
     } else {
-        await verifyIdentification(idValue)
+        const cpfUser = cpfInput.value
+        console.log(cpfUser)
+        await verifyIdentification(idValue, cpfUser)
     }
 }
 
@@ -74,8 +79,6 @@ function handleSelectedSymptom(event) {
 
     const alreadySelected = symptoms.findIndex(symptom => symptom == symptomId)
     
-    console.log(symptom.checked)
-
     if (alreadySelected != -1) {
         const filteredSymptoms = symptoms.filter(symptom => symptom != symptomId)
 
@@ -86,6 +89,7 @@ function handleSelectedSymptom(event) {
     }
 
     symptomsInput.value = symptoms
+    noSymptomsInput.value = false
 }
 
 noSymptomsCheck.addEventListener('click', function(){
@@ -101,6 +105,8 @@ noSymptomsCheck.addEventListener('click', function(){
     //     symptoms.value = ""
     // }
     symptoms = []
+    symptomsInput.value = ''
+    noSymptomsInput.value = true
 })
 
  async function verifyCPF(cpfValue) {
@@ -114,9 +120,9 @@ noSymptomsCheck.addEventListener('click', function(){
     matriculaInput.disabled = false
 }
 
-async function verifyIdentification(idValue) {
-    const checked = await fetch(`http://localhost:5000/identification/${idValue}`)
-
+async function verifyIdentification(idValue, userId) {
+    const checked = await fetch(`http://localhost:5000/identification/${userId}/${idValue}`)
+    console.log(checked)
     if(checked.status !== 200) {
         alert('Informação inválida')
         return
@@ -129,4 +135,7 @@ async function verifyIdentification(idValue) {
     declarationCheck.disabled = false
 }
 
-
+declarationCheck.addEventListener('click', () => {
+    if(declarationCheck.checked) submitButton.classList.remove('disabled')
+    else submitButton.classList.add('disabled')
+})

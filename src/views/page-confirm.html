@@ -10,28 +10,37 @@
 <body id="page-body">
 
     <header class="page-header">
-        <div class="top-bar">
-            <a href="/">
-                <img src="/assets/back.svg" alt="Voltar">
-            </a>
-        </div>
         
-        <img src="/assets/logo.png" alt="Logo Bahiana">
+        
     </header>
 
     <div id="container">
+        <a href="/">
+            <img src="/assets/back.svg" alt="Voltar">
+        </a>
         <div class="page-container ">
             <div class="confirmation">
+                <h1>{{ cpf }}</h1>
+
+                {% if noSymptoms == 'true' %}
+                <h2>Você está apto para acessar nossas instalações.</h2>
                 
-                <h1>123.456.789-10</h1>
-                <h2>Você está apto para acessar as instalações da Bahiana</h2>
-                
-                <img src="/assets/check_circle_outline-white-48dp.svg" alt="">
+                <img src="/assets/verified-white-48dp.svg" alt="">
 
                 <p>
                     Apresente esse comprovante na portaria
                 </p>
+                {% endif %}
 
+                {% if noSymptoms == 'false' %}
+                    <h2>Você não está apto para acessar nossas instalações.</h2>
+                    
+                    <img src="/assets/cancel-black-48dp.svg" alt="">
+
+                    <p>
+                        Um médico capacitado entrará em contato com você para acompanha-lo
+                    </p>
+                {% endif %}
             </div>
         
             <button class="button" type="submit">Baixar</button>

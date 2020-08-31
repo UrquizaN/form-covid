@@ -1,6 +1,6 @@
 exports.up = (knex) => knex.schema.createTable('symptoms', (table) => {
     table.increments('id')
-    table.text('name').notNullable()
+    table.text('name')
 
     table.timestamp('created_at').defaultTo(knex.fn.now())
 });
